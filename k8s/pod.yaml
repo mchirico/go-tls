@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gotls-pod
+  labels:
+    app: gotls
+spec:
+  containers:
+    - name: task-pv-container
+      image: "quay.io/gotlsdb/gotlsdb:v2.0.2"
+      command: ["/entrypoint.sh","--tls-cert=/certs/fullchain1.pem", "--tls-key=/certs/privkey1.pem"]
+      ports:
+        - containerPort: 8098
+          name: "http-server"
+
+
