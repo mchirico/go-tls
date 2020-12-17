@@ -1,4 +1,4 @@
-package certs
+package findCerts
 
 import (
 	"os"

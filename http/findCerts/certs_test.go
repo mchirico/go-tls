@@ -1,4 +1,4 @@
-package certs
+package findCerts
 
 import (
 	"io/ioutil"
@@ -9,7 +9,7 @@ import (
 func TestCertFile_KeyFile(t *testing.T) {
 
 	cf := NewCertFile()
-	cf.AddPath("./fixtures").AddPath("./http/certs/fixtures")
+	cf.AddPath("./fixtures").AddPath("./http/findCerts/fixtures")
 
 	file, err := cf.KeyFile()
 	if err != nil {
@@ -30,7 +30,7 @@ func TestCertFile_KeyFile(t *testing.T) {
 func TestCertFile_CertFile(t *testing.T) {
 
 	cf := NewCertFile()
-	cf.AddPath("./fixtures").AddPath("./http/certs/fixtures")
+	cf.AddPath("./fixtures").AddPath("./http/findCerts/fixtures")
 
 	file, err := cf.CertFile()
 	if err != nil {
