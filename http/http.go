@@ -2,6 +2,7 @@ package http
 
 import (
 	"crypto/tls"
+	"github.com/mchirico/go-tls/http/findCerts"
 	"log"
 	"net/http"
 )
@@ -30,6 +31,12 @@ func Server() {
 		TLSConfig:    cfg,
 		TLSNextProto: make(map[string]func(*http.Server, *tls.Conn, http.Handler), 0),
 	}
-	log.Fatal(srv.ListenAndServeTLS("tls.crt", "tls.key"))
+
+	cf := findCerts.NewCertFile()
+	cf.AddPath("/certs").AddPath("/etc/certs")
+	keyFile, _ := cf.KeyFile()
+	certFile, _ := cf.CertFile()
+
+	log.Fatal(srv.ListenAndServeTLS(certFile, keyFile))
 
 }

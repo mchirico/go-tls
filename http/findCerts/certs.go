@@ -29,8 +29,9 @@ func (cf *CertFile) KeyFile() (string, error) {
 		filename := path + "/" + cf.keyFile
 		if _, err := os.Stat(filename); os.IsNotExist(err) {
 			continue
+		} else {
+			return filename, err
 		}
-		return filename, nil
 	}
 
 	return "", os.ErrNotExist
@@ -41,8 +42,9 @@ func (cf *CertFile) CertFile() (string, error) {
 		filename := path + "/" + cf.certFile
 		if _, err := os.Stat(filename); os.IsNotExist(err) {
 			continue
+		} else {
+			return filename, err
 		}
-		return filename, nil
 	}
 
 	return "", os.ErrNotExist
